@@ -5,7 +5,7 @@ import httpx
 import json
 from dotenv import load_dotenv
 
-from city.models import DBCity
+from city.models import City
 
 
 load_dotenv()
@@ -14,7 +14,7 @@ API_KEY = os.getenv("WEATHER_API_KEY")
 BASE_URL = os.getenv("WEATHER_API_URL")
 
 
-async def get_weather(client: httpx.AsyncClient, city: DBCity) -> dict | None:
+async def get_weather(client: httpx.AsyncClient, city: City) -> dict | None:
     try:
         response = await client.get(BASE_URL,
                                     params={"key": API_KEY, "q": city.name})
